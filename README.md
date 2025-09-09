@@ -38,3 +38,48 @@ Autonomous-Delivery-Agent/
 │
 ├── README.md
 └── report.pdf
+
+## Environment Model
+- The **grid** is represented as a text file.
+- Each cell has an **integer cost ≥ 1**.
+- **Static obstacles**: `#`
+- **Start/Goal**: `S`, `G`
+- Example:
+1 1 1 G
+1 # 1 1
+S 1 1 1
+
+**Dynamic obstacles** can be defined after a blank line:
+1 1 1 1 G
+S 1 # 1 1
+
+Dynamic schedule (time row col)
+1 0 2
+2 1 2
+
+## Algorithms Implemented
+1. **BFS (Breadth-First Search)**  
+ - Finds shortest path in terms of steps.  
+ - Ignores terrain cost.  
+
+2. **UCS (Uniform-Cost Search)**  
+ - Considers terrain cost.  
+ - Expands cheapest path first.  
+
+3. **A* Search**  
+ - Uses **Manhattan distance heuristic**.  
+ - Optimal and efficient on large maps.  
+
+4. **Local Search Replanning (Hill-Climbing with Random Restarts)**  
+ - Handles **dynamic obstacles**.  
+ - Replans when obstacles block the current path.
+
+Run with specific algorithm
+```bash
+python delivery_agent.py --algo bfs --map maps/small.txt
+python delivery_agent.py --algo ucs --map maps/medium.txt
+python delivery_agent.py --algo astar --map maps/large.txt
+python delivery_agent.py --algo local --map maps/dynamic.txt --dynamic
+
+Run demo (all algorithms on all maps)
+python delivery_agent.py --demo
