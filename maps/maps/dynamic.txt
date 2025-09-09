@@ -1,0 +1,10 @@
+1 1 1 1 1
+1 5 1 5 1
+1 # 1 # 1
+S 1 1 1 G
+
+# Dynamic schedule: (time row col)
+1 1 2
+2 2 2
+3 2 1
+3 0 2
